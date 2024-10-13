@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import java.text.DecimalFormat
 
 class MainActivity : ComponentActivity() {
     private lateinit var tvDisplay: TextView
@@ -78,11 +79,8 @@ class MainActivity : ComponentActivity() {
                 "/" -> previousInput.toDouble() / currentInput.toDouble()
                 else -> 0.0
             }
-            currentInput = if (result == result.toInt().toDouble()) {
-                result.toInt().toString()
-            } else {
-                result.toString()
-            }
+            val df = DecimalFormat("#.##")
+            currentInput = df.format(result)
             updateDisplay(currentInput)
             operator = ""
         }
